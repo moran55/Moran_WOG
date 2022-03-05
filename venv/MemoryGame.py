@@ -2,7 +2,7 @@ import random
 import sys
 import os
 import time
-import utils_helper as u_p
+import Utils as u_p
 
 g_difficulty = -1  # default value
 
@@ -59,9 +59,11 @@ def play():
     equal_stat = is_list_equal(user_nums, sys_nums)
     if equal_stat:
         stat_msg = 'You Won!!!'
+        stat = True
     else:
         stat_msg = 'You lose, try again next time :)'
-    return stat_msg
+        stat = False
+    return stat, stat_msg
 
 
 def main(diff):
@@ -69,7 +71,7 @@ def main(diff):
     g_difficulty = diff
     res = play()
     u_p.clear_console()
-    print(res)
+    return res
 
 
 if __name__ == '__main__':

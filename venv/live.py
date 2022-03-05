@@ -1,6 +1,7 @@
 import CurrencyRouletteGame as CR_G
 import GuessGame as G_G
 import MemoryGame as M_G
+import Score as s
 
 
 def welcome(name):
@@ -53,11 +54,13 @@ def load_game():
             b_d_input = True
         print('You chose difficulty level: ' + user_diff_input + '!')
         if numeric_choice == 1:
-            res_game = M_G.main(numeric_diff)
+            res_stat, res_game = M_G.main(numeric_diff)
         elif numeric_choice == 2:
-            res_game = G_G.main(numeric_diff)
+            res_stat, res_game = G_G.main(numeric_diff)
         elif numeric_choice == 3:
-            res_game = CR_G.main(numeric_diff)
+            res_stat, res_game = CR_G.main(numeric_diff)
+        if res_stat:
+            s.add_score(numeric_diff)
     except Exception as e:
         return False, f'There was an error {e}'
     return True, res_game
